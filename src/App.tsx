@@ -17,7 +17,7 @@ import {
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, MouseEvent, TouchEvent } from 'react';
 import { useInView } from 'motion/react';
 
 const IMAGES = {
@@ -28,7 +28,7 @@ const IMAGES = {
   portfolio2: "https://lh3.googleusercontent.com/aida-public/AB6AXuBQpYJV9NVZHj6Vx02J8VB3jPLQr7S-Sjsrf78M1uuswByh0H7AppbqZNbJQkYIFhZ8e-KSRF2QzjAZUqbZfHgDrhNphznLFfkhxDGgl7SKrZpZ6z_reKn36O1L32x-EWE__BwCEXrOqrHK33b3u36T4pI_S7rGRM9iJiZFalSxV_pE9xloDT7jM9fskD4_uF1uFlg0XS9NkWNSrnILZLpQQUda5iBAK2LPqy3pDbmfTuMTEEJVldUL8PBJnTQpZU2upgN1wbLcMvM",
   portfolio3: "https://lh3.googleusercontent.com/aida-public/AB6AXuBOrR8jiw5dlUjRCOkpj3XTn9m5p3qi-Cq_p5rmYrXc0InkHbXPNAx_6U06Df3oQ4IuArSSdvlOXMgYTtwKVdf85EdWCu_0r3vsiVs6fb5K5qu5U244-V45FDivVv-VgOYLRs1uqtbCcdBrTfrt8aiKNktwwyqD-WJow3i5kg_pvu-72EwErZ1WBb1jfkNmqLm1xT-DpQraVMBmppzkeexx6Q6SIYFRXXG7-7U3Fh8qphhWRTy6msZAq0T1XkO5nunc2lALaKeXqgo",
   testimonial: "https://lh3.googleusercontent.com/aida-public/AB6AXuCElXglWaOMUUmCv-ycKMgr_omC6gL76f7Q2RXQHVIXyvM-0OlOijKDSTyIkI74WmF5GhoHMe0Jc3ucfoJ1qbg9jV5c6R91UXwS6RqLsALv6NSZsDDtirVHzLkgxOXwG8C94OX9jNMyQZaMNp86JcX5oH_0jOpZW7sjhZHLitBGuXxbR8U8ky1zXq2QvFwzIUQL69KZ5okVo4pGu9qE6M4XHIU1vn7EXfJPV_c_BFzfLDN8pArB9wj_BpLsJ0_a4YiAEppVTtNLm7w",
-  logo: "https://postfiles.pstatic.net/MjAyNjA1MDNfNDgg/MDAxNzc3Nzg2MzAzNjkx.ZgQ85EPfKgWRCulb-q8vVxdH0qpxLFs-qUlMG8xyPWwg.E2LdNEzGXaznn6P04Z7ySIvRN-9SMtAApbumqxni6gUg.PNG/ChatGPT_Image_2026%EB%85%84_5%EC%9B%94_3%EC%9D%BC_%EC%98%A4%EC%A0%84_01_13_14.png?type=w773",
+  logo: "https://postfiles.pstatic.net/MjAyNjA1MDdfMTY3/MDAxNzc4MTUzMzQzMTI3.207iZa4wmmkzBr2S6aJSYSP7HwUxoutHqO9qsOtN7tog.M4DvRmXdMml2Eni6htGRJxfZzFBxe28B-zw_oLENAS0g.PNG/uclogo.png?type=w3840",
   intro: "https://postfiles.pstatic.net/MjAyNjA1MDNfNzYg/MDAxNzc3Nzg2NTI1Mjgy.Zu7eH2hTCASLSvXuNEvamDgJ7cBejH00S2aoBzIC5Ksg.zmj1BvnayNpT_mbF-mbt0wNcbPrIBaw8eTO9f9uRKAsg.GIF/GIF_2026-05-03_%EC%98%A4%ED%9B%84_2-33-11.gif?type=w3840"
 };
 
@@ -97,7 +97,7 @@ const Navbar = ({ onConsult }: { onConsult: () => void }) => {
     <header className="glass-nav font-serif antialiased sticky top-0 z-50">
       <div className="flex justify-between items-center w-full px-8 py-2 max-w-7xl mx-auto">
         <a className="flex items-center" href="#">
-          <img src={IMAGES.logo} alt="URBAN CRAFT" className="h-14 md:h-20 w-auto object-contain" referrerPolicy="no-referrer" />
+          <img src={IMAGES.logo} alt="URBAN CRAFT" className="h-10 md:h-14 w-auto object-contain" referrerPolicy="no-referrer" />
         </a>
         
         <nav className="hidden md:flex items-center space-x-8">
@@ -193,7 +193,7 @@ const Hero = ({ onConsult, onViewPortfolio }: { onConsult: () => void, onViewPor
             />
           </motion.div>
         </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/20 to-transparent z-[5]"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-stone-50/90 via-stone-50/40 to-transparent z-[5]"></div>
       </motion.div>
       
       <motion.div 
@@ -542,7 +542,7 @@ const Portfolio = ({ onViewAll }: { onViewAll: () => void }) => {
           </div>
           <button 
             onClick={onViewAll}
-            className="font-bold text-stone-800 border-b-2 border-[#7d6452] pb-1 uppercase tracking-widest hover:text-[#7d6452] transition-all self-start flex items-center gap-2" 
+            className="px-8 py-3 border border-[#7d6452] text-[#7d6452] hover:bg-[#7d6452] hover:text-white font-bold uppercase tracking-widest transition-all duration-300 self-start flex items-center gap-2 rounded-full" 
           >
             모든 프로젝트 보러가기 <ArrowRight className="w-4 h-4" />
           </button>
@@ -837,7 +837,74 @@ const ConsultationModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
   );
 };
 
+const BeforeAfterSlider = ({ before, after }: { before: string, after: string }) => {
+  const [sliderPosition, setSliderPosition] = useState(50);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleMove = (clientX: number) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+    setSliderPosition((x / rect.width) * 100);
+  };
+
+  const handleMouseMove = (e: MouseEvent) => handleMove(e.clientX);
+  const handleTouchMove = (e: TouchEvent) => handleMove(e.touches[0].clientX);
+
+  return (
+    <div 
+      ref={containerRef}
+      className="relative aspect-video overflow-hidden rounded-sm cursor-col-resize select-none border border-stone-100"
+      onMouseMove={handleMouseMove}
+      onTouchMove={handleTouchMove}
+    >
+      <img src={after} className="absolute inset-0 w-full h-full object-cover" alt="After" referrerPolicy="no-referrer" />
+      
+      <div 
+        className="absolute inset-y-0 left-0 overflow-hidden border-r-2 border-white shadow-xl z-10 transition-all duration-75"
+        style={{ width: `${sliderPosition}%` }}
+      >
+        <img 
+          src={before} 
+          className="absolute inset-0 h-full object-cover brightness-75 grayscale" 
+          style={{ width: `${(100 / sliderPosition) * sliderPosition}%`, minWidth: '100vw' }}
+          alt="Before" 
+          referrerPolicy="no-referrer" 
+        />
+        <div className="absolute top-4 left-4 bg-black/40 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest whitespace-nowrap">Before</div>
+      </div>
+
+      <div className="absolute top-4 right-4 bg-[#7d6452] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-0">After</div>
+
+      <div 
+        className="absolute inset-y-0 z-20 pointer-events-none"
+        style={{ left: `${sliderPosition}%` }}
+      >
+        <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white shadow-2xl flex items-center justify-center border border-stone-200">
+          <div className="flex gap-1">
+            <ArrowLeft className="w-3 h-3 text-[#7d6452]" />
+            <ArrowRight className="w-3 h-3 text-[#7d6452]" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const PortfolioDetail = ({ onClose }: { onClose: () => void }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [showTopButton, setShowTopButton] = useState(false);
+
+  const handleScroll = () => {
+    if (containerRef.current) {
+      setShowTopButton(containerRef.current.scrollTop > 300);
+    }
+  };
+
+  const scrollToTop = () => {
+    containerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const cases = [
     { title: "분당 정자동 아파트", before: "https://postfiles.pstatic.net/MjAyNjA1MDVfMTk0/MDAxNzc3OTA3NjA5MzUx.tGDMGd0t18RhZPnV_sdfu_JUFeAGvx9zDlag9GRw9rsg.gSu44QP_9tPfF8K-MfwkCbl8trFT2uIF9dWtk1_6D44g.PNG/ChatGPT_Image_2026%EB%85%84_5%EC%9B%94_3%EC%9D%BC_%EC%98%A4%ED%9B%84_04_56_54_(1).png?type=w3840", after: "https://postfiles.pstatic.net/MjAyNjA1MDVfNDUg/MDAxNzc3OTA3NjQxODQz.tlr0CY5fUIyV64MMn-0E0CzFAdXcT-_uff-yU3NfCGAg.fWsCxSEXmCG6v_GqMj2u8Dh82TRGntXVWM4ZButPxG0g.PNG/ChatGPT_Image_2026%EB%85%84_5%EC%9B%94_3%EC%9D%BC_%EC%98%A4%ED%9B%84_04_56_54_(2).png?type=w3840", description: "노후된 아파트의 변신, 채광을 극대화한 구조 변경" },
     { title: "잠실동 아파트", before: "https://postfiles.pstatic.net/MjAyNjA1MDVfMjM1/MDAxNzc3OTgxNTU2NzUx.obMgVOo1YjQkiEW-MKSKM7FpQYyKqrrmo5GnOiT9yyYg.lYpkv9AAovJSZjaHAr2q4fuCnstLf83vihcs3QyWGxsg.PNG/ChatGPT_Image_2026%EB%85%84_5%EC%9B%94_5%EC%9D%BC_%EC%98%A4%ED%9B%84_08_29_35.png?type=w3840", after: "https://postfiles.pstatic.net/MjAyNjA1MDVfMTY3/MDAxNzc3OTgxNTYwMDkz.JhVOg6E0E_Udfw2mBw3bnVP9FNrRn6DckQ4MlTTAq1Mg.i51tC6eTn8_mg15_Fgi5AczHrDMRi7-IyLUepo85ge8g.PNG/ChatGPT_Image_2026%EB%85%84_5%EC%9B%94_5%EC%9D%BC_%EC%98%A4%ED%9B%84_08_39_23.png?type=w3840", description: "본질에 집중한 미니멀리즘 다이닝 공간" },
@@ -864,6 +931,8 @@ const GALLERY_ITEMS = [
 
   return (
     <motion.div 
+      ref={containerRef}
+      onScroll={handleScroll}
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 100 }}
@@ -874,9 +943,10 @@ const GALLERY_ITEMS = [
         <div className="mb-24">
           <button 
             onClick={onClose}
-            className="flex items-center gap-2 text-stone-400 hover:text-stone-800 transition-colors mb-8 group"
+            className="px-6 py-3 border border-stone-200 rounded-full flex items-center gap-2 text-stone-600 hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all duration-300 mb-12 group shadow-sm hover:shadow-md"
           >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to Home
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
+            <span className="text-sm font-bold tracking-tight">메인으로 돌아가기</span>
           </button>
           <h2 className="text-editorial text-4xl md:text-5xl text-stone-800 mb-3 leading-tight">어반 크래프트 포트폴리오</h2>
           <p className="text-xl text-stone-500 leading-relaxed">어반크래프트가 진행한 시공 전/후의 극명한 변화와 다양한 프로젝트 리스트를 확인해보세요.</p>
@@ -884,21 +954,15 @@ const GALLERY_ITEMS = [
 
         <div className="space-y-32">
           <section>
-            <h3 className="font-serif text-3xl text-stone-800 mb-12 flex items-center gap-4">
+            <h3 className="font-serif text-3xl md:text-4xl text-stone-800 mb-12 flex items-center gap-4">
+              <span className="w-1.5 h-8 bg-[#7d6452] rounded-full"></span>
               시공 전 후
             </h3>
             <div className="grid grid-cols-1 gap-20">
               {cases.map((project, idx) => (
                 <div key={idx} className="group">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="relative aspect-video overflow-hidden rounded-sm">
-                      <img src={project.before} className="w-full h-full object-cover grayscale brightness-75" alt="Before" referrerPolicy="no-referrer" />
-                      <div className="absolute top-4 left-4 bg-black/40 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Before</div>
-                    </div>
-                    <div className="relative aspect-video overflow-hidden rounded-sm">
-                      <img src={project.after} className="w-full h-full object-cover" alt="After" referrerPolicy="no-referrer" />
-                      <div className="absolute top-4 left-4 bg-[#7d6452] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">After</div>
-                    </div>
+                  <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+                    <BeforeAfterSlider before={project.before} after={project.after} />
                   </div>
                   <div className="mt-8 flex justify-between items-end">
                     <div>
@@ -913,7 +977,8 @@ const GALLERY_ITEMS = [
           </section>
           
           <section className="pb-20">
-            <h3 className="text-editorial text-4xl md:text-5xl text-stone-800 mb-12">
+            <h3 className="font-serif text-3xl md:text-4xl text-stone-800 mb-12 flex items-center gap-4">
+              <span className="w-1.5 h-8 bg-[#7d6452] rounded-full"></span>
               포트폴리오
             </h3>
             <div className="grid grid-cols-1 gap-20">
@@ -950,7 +1015,32 @@ const GALLERY_ITEMS = [
             </div>
           </section>
         </div>
+
+        <div className="mt-32 pb-20 flex justify-end">
+          <button 
+            onClick={onClose}
+            className="px-6 py-3 border border-stone-200 rounded-full flex items-center gap-3 text-stone-600 hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all duration-300 group shadow-sm hover:shadow-md"
+          >
+            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" /> 
+            <span className="text-base font-bold tracking-tight">메인으로 돌아가기</span>
+          </button>
+        </div>
       </div>
+
+      <AnimatePresence>
+        {showTopButton && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.5, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.5, y: 20 }}
+            onClick={scrollToTop}
+            className="fixed bottom-10 right-10 z-[120] bg-transparent hover:bg-[#7d6452] border border-[#7d6452] text-[#7d6452] hover:text-white p-4 rounded-full shadow-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 active:scale-95 group"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp className="w-6 h-6 group-hover:-translate-y-1 transition-transform" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
