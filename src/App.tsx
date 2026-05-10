@@ -94,8 +94,8 @@ const Navbar = ({ onConsult }: { onConsult: () => void }) => {
   ];
 
   return (
-    <header className="glass-nav font-serif antialiased sticky top-0 z-50">
-      <div className="flex justify-between items-center w-full px-8 py-2 max-w-7xl mx-auto">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-xl border-b border-stone-100/50 transition-all duration-300">
+      <div className="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
         <a className="flex items-center" href="#">
           <img src={IMAGES.logo} alt="URBAN CRAFT" className="h-10 md:h-14 w-auto object-contain" referrerPolicy="no-referrer" />
         </a>
@@ -939,17 +939,32 @@ const GALLERY_ITEMS = [
       transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
       className="fixed inset-0 z-[110] bg-white overflow-y-auto"
     >
-      <div className="max-w-7xl mx-auto px-8 py-20">
-        <div className="mb-24">
+      <header className="sticky top-[1px] md:top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-stone-100">
+        <div className="max-w-7xl mx-auto px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
           <button 
             onClick={onClose}
-            className="px-6 py-3 border border-stone-200 rounded-full flex items-center gap-2 text-stone-600 hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all duration-300 mb-12 group shadow-sm hover:shadow-md"
+            className="px-5 py-2 border border-stone-200 rounded-full flex items-center gap-2 text-stone-600 hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all duration-300 group shadow-sm"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
-            <span className="text-sm font-bold tracking-tight">메인으로 돌아가기</span>
+            <span className="text-xs font-bold tracking-tight">메인으로 돌아가기</span>
           </button>
-          <h2 className="text-editorial text-4xl md:text-5xl text-stone-800 mb-3 leading-tight">어반 크래프트 포트폴리오</h2>
-          <p className="text-xl text-stone-500 leading-relaxed">어반크래프트가 진행한 시공 전/후의 극명한 변화와 다양한 프로젝트 리스트를 확인해보세요.</p>
+          
+          <div className="hidden md:block">
+            <h2 className="font-serif text-lg text-stone-800 tracking-tight">어반 크래프트 시공사례 포트폴리오</h2>
+          </div>
+
+          <div className="hidden md:flex gap-1">
+            <div className="w-2 h-2 rounded-full bg-[#7d6452]"></div>
+            <div className="w-2 h-2 rounded-full bg-stone-200"></div>
+            <div className="w-2 h-2 rounded-full bg-stone-100"></div>
+          </div>
+        </div>
+      </header>
+
+      <div className="max-w-7xl mx-auto px-8 py-16 md:py-24">
+        <div className="mb-24 text-center max-w-3xl mx-auto">
+          <h2 className="text-editorial text-4xl md:text-6xl text-stone-900 mb-6 leading-tight">어반 크래프트의 어제와 오늘</h2>
+          <p className="text-lg md:text-xl text-stone-500 leading-relaxed font-light">어반크래프트가 진행한 시공 전/후의 극명한 변화와<br className="hidden md:block" /> 아름다운 공간의 재탄생을 확인해보세요.</p>
         </div>
 
         <div className="space-y-32">
